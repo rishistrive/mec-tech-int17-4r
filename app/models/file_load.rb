@@ -35,7 +35,7 @@ class FileLoad < ApplicationRecord
           code: row["Merchant Code"], 
           name: row["Merchant Name"],
           food_type: row["Food Type"]
-        }
+        )
       end
       ## Saving data to food shop here ##
     end
