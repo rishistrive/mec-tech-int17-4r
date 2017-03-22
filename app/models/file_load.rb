@@ -43,7 +43,7 @@ class FileLoad < ApplicationRecord
       }
 
       ## Saving data to food shop here ##
-      if row["Merchant Code"].present? && row["Merchant Name"].present?
+      if code.present? && row["Merchant Name"].present?
         FoodShop.create(
           village: row["Village"], 
           code: code, 
