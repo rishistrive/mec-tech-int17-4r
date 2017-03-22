@@ -37,18 +37,18 @@ class FileLoad < ApplicationRecord
 
       result_rows << {
         village: row["Village"], 
-        code: row["Merchant Code"], 
+        code: code, 
         name: row["Merchant Name"],
-        food_type: row["Food Type"]
+        food_type: food_type
       }
 
       ## Saving data to food shop here ##
       if row["Merchant Code"].present? && row["Merchant Name"].present?
         FoodShop.create(
           village: row["Village"], 
-          code: row["Merchant Code"], 
+          code: code, 
           name: row["Merchant Name"],
-          food_type: row["Food Type"]
+          food_type: food_type
         )
       end
       ## Saving data to food shop here ##
