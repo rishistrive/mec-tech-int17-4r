@@ -4,6 +4,10 @@ class FileLoad < ApplicationRecord
   validate :validate_file_exists, if: :filename
   serialize :results, Hash
   
+  ## File Format ##
+  FILEFORMAT = ['food-vendors', 'service-vendors']
+  ## File Format ##
+
   def full_path
     File.join(Rails.root,filename)
   end
@@ -21,6 +25,16 @@ class FileLoad < ApplicationRecord
     row_count = 0
     CSV.foreach(full_path, headers: true) do |row|
       row_count += 1
+      code = ''
+      food_type = ''
+      if self.file_format == FILEFORMAT[0]
+        code = row["Merchant Code"]
+        food_type = row["Food Type"]
+      else
+        code =  row["Merchant Group"] +'-'+ row["Member ID"]
+        food_type =  row["Service Category"].humanize +'-'+ row["Services Detail"].humanize
+      end
+
       result_rows << {
         village: row["Village"], 
         code: row["Merchant Code"], 
@@ -41,6 +55,5 @@ class FileLoad < ApplicationRecord
     end
     self.results = {row_count: row_count, rows: result_rows}
   end
-      
   
 end

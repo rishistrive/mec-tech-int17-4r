@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322155717) do
+ActiveRecord::Schema.define(version: 20170322161617) do
 
   create_table "file_loads", force: :cascade do |t|
     t.string   "filename"
     t.text     "results"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "file_format", default: "food-vendors"
   end
 
   create_table "food_shops", force: :cascade do |t|
