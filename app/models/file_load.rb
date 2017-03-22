@@ -27,6 +27,17 @@ class FileLoad < ApplicationRecord
         name: row["Merchant Name"],
         food_type: row["Food Type"]
       }
+
+      ## Saving data to food shop here ##
+      if row["Merchant Code"].present? && row["Merchant Name"].present?
+        FoodShop.create(
+          village: row["Village"], 
+          code: row["Merchant Code"], 
+          name: row["Merchant Name"],
+          food_type: row["Food Type"]
+        }
+      end
+      ## Saving data to food shop here ##
     end
     self.results = {row_count: row_count, rows: result_rows}
   end
