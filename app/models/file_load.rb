@@ -31,8 +31,8 @@ class FileLoad < ApplicationRecord
         code = row["Merchant Code"]
         food_type = row["Food Type"]
       else
-        code =  row["Merchant Group"] +'-'+ row["Member ID"]
-        food_type =  row["Service Category"].humanize +'-'+ row["Services Detail"].humanize
+        code =  row["Merchant Group"] + '-' + row["Member ID"]
+        food_type =  row["Service Category"].to_s.humanize + '-' + row["Services Detail"].to_s.humanize
       end
 
       result_rows << {
